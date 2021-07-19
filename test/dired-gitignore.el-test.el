@@ -2,8 +2,7 @@
 (require 'dired-gitignore)
 
 (defun fixture-tmp-dir (body)
-  (when-let ((tmp (getenv "RUNNER_TMP")))
-    (setq temporary-file-directory tmp))
+  (executable-find "git")
   (let ((tmp-dir (make-temp-file "dired-gitignore-test-repo" 'directory)))
     (unwind-protect
        (progn
