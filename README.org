@@ -7,7 +7,7 @@ dired minor mode to ignore files that are to be ignored by git.
 Sometimes the working copy directories of your git repos get flooded with
 temporary files, log files, cache stuff – in short files not belonging to the
 repo and ignored by git.  At those times you might wish for a convenient way to
-hide those files in your ==dired== buffer.  If yes, ==dired-gitignore== is
+hide those files in your =dired= buffer.  If yes, =dired-gitignore= is
 for you.
 
 Hide and show the gitignored files by a simple configurable keystroke.
@@ -26,7 +26,7 @@ following lines into your startup file.
 
 ** Usage
 
-Just bind the command ==(dired-gitignore-mode)== to some key of your choice. For
+Just bind the command =(dired-gitignore-mode)= to some key of your choice. For
 example by putting something like
 
 #+BEGIN_EXAMPLE emacs-lisp
@@ -34,7 +34,7 @@ example by putting something like
 #+END_EXAMPLE
 
 into your startup files.  Then you will hide and show the gitignored files in a
-dired buffer by hitting the ==H== key.
+dired buffer by hitting the =H= key.
 
 
 ** Status
