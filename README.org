@@ -1,0 +1,48 @@
+* dired-gitignore
+
+dired minor mode to ignore files that are to be ignored by git.
+
+** Purpose
+
+Sometimes the working copy directories of your git repos get flooded with
+temporary files, log files, cache stuff – in short files not belonging to the
+repo and ignored by git.  At those times you might wish for a convenient way to
+hide those files in your ==dired== buffer.  If yes, ==dired-gitignore== is
+for you.
+
+Hide and show the gitignored files by a simple configurable keystroke.
+
+
+** Installation
+
+As of now the easiest way of installing it is to use [[https://github.com/raxod502/straight.el][straight.el]]. Put the
+following lines into your startup file.
+
+#+BEGIN_EXAMPLE emacs-lisp
+(straight-use-package
+ '(dired-gitignore :type git :host github :repo "johannes-mueller/dired-gitignore.el"))
+#+END_EXAMPLE
+
+
+** Usage
+
+Just bind the command ==(dired-gitignore-mode)== to some key of your choice. For
+example by putting something like
+
+#+BEGIN_EXAMPLE emacs-lisp
+(define-key dired-mode-map (kbd "h") #'dired-gitignore-mode)
+#+END_EXAMPLE
+
+into your startup files.  Then you will hide and show the gitignored files in a
+dired buffer by hitting the ==H== key.
+
+
+** Status
+
+This is basically the result of a rainy Sunday afternoon hack.  So probably not
+everything will work under any circumstances.  Bug reports and feedback welcome
+in the issue tracker.  Pull requests also, of course.
+
+** Credits
+
+This package has been inspired by [[https://github.com/mattiasb/dired-hide-dotfiles][dired-hide-dotfiles]].
