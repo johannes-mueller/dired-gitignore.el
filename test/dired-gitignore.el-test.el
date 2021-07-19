@@ -1,5 +1,4 @@
 
-(require 'project)
 (require 'dired-gitignore)
 
 (defun fixture-tmp-dir (body)
@@ -57,7 +56,7 @@
    (lambda ()
      (dired-gitignore--mark-file ".cache")
      (should (equal (dired-get-marked-files)
-		    `(,(concat (expand-file-name (project-root (project-current))) ".cache")))))))
+		    `(,(concat (file-name-as-directory tmp-dir) "test-repo/.cache")))))))
 
 (ert-deftest test-dired-gitignore--mark-non-existant ()
   (fixture-tmp-dir
