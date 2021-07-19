@@ -2,7 +2,7 @@
 (require 'dired-gitignore)
 
 (defun fixture-tmp-dir (body)
-  (executable-find "git")
+  (message "git executable %s" (executable-find "git"))
   (let ((tmp-dir (make-temp-file "dired-gitignore-test-repo" 'directory)))
     (unwind-protect
        (progn
