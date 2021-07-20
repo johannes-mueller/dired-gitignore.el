@@ -48,9 +48,20 @@
 (defun dired-gitignore--hide ()
   "Determine the lines to be hidden and hide them."
   (save-excursion
-    (dolist (file (split-string (shell-command-to-string "git check-ignore * .*")))
-      (dired-gitignore--mark-file file)))
-  (dired-do-kill-lines nil ""))
+    (let ((marked-files (dired-get-marked-files)))
+      (dired-gitignore--remove-all-marks)
+      (dolist (file (split-string (shell-command-to-string "git check-ignore * .*")))
+	(setq marked-files (delete (dired-gitignore--mark-file file) marked-files)))
+      (dired-do-kill-lines nil "")
+      (dired-gitignore--restore-marks marked-files))))
+
+
+(defun dired-gitignore--remove-all-marks ()
+  (save-excursion
+    (let ((inhibit-read-only t))
+      (goto-char (point-min))
+      (while (re-search-forward dired-re-mark nil t)
+	(subst-char-in-region (1- (point)) (point) (preceding-char) ?\s)))))
 
 
 (defun dired-gitignore--mark-file (file)
@@ -58,7 +69,14 @@
   (let ((absolute-file (concat (expand-file-name default-directory) file)))
     (when (file-exists-p absolute-file)
       (dired-goto-file absolute-file)
-      (dired-mark 1))))
+      (dired-mark 1)
+      absolute-file)))
+
+
+(defun dired-gitignore--restore-marks (marked-files)
+  (dolist (file marked-files)
+	(dired-goto-file file)
+	(dired-mark 1)))
 
 (provide 'dired-gitignore)
 ;;; dired-gitignore.el ends here
