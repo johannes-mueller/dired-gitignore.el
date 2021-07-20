@@ -48,7 +48,7 @@
 (defun dired-gitignore--hide ()
   "Determine the lines to be hidden and hide them."
   (save-excursion
-    (dolist (file (split-string (shell-command-to-string "git check-ignore * .*")))
+    (dolist (file (split-string (shell-command-to-string "git check-ignore `ls -A1`")))
       (dired-gitignore--mark-file file)))
   (dired-do-kill-lines nil ""))
 
