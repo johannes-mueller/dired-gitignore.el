@@ -27,7 +27,7 @@
 ;; command to toggle the minor mode `(dired-gitignore-moode)' to some
 ;; convenient key.
 
-;; It needs `git' executable in the ==PATH==.
+;; It needs the executables for `git' and `ls' in the `PATH'==.
 
 (require 'dired)
 
