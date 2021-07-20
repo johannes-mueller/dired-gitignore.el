@@ -67,3 +67,25 @@
    (lambda ()
      (dired-gitignore--mark-file "non-existant-file")
      (should (equal (dired-get-marked-files) nil)))))
+
+
+(ert-deftest test-dired-gitignore--restore-marks-no-ignored-file-marked ()
+  (fixture-tmp-dir
+   (lambda ()
+     (let ((marked-file (concat (file-name-as-directory tmp-dir) "test-repo/not-to-be-ignored.txt")))
+       (dired-goto-file marked-file)
+       (dired-mark 1)
+       (goto-char (point-min))
+       (dired-gitignore--hide)
+       (should (equal (dired-get-marked-files) `(,marked-file)))))))
+
+
+(ert-deftest test-dired-gitignore--restore-marks-ignored-file-marked ()
+  (fixture-tmp-dir
+   (lambda ()
+     (let ((marked-file (concat (file-name-as-directory tmp-dir) "test-repo/to-be-ignored.txt")))
+       (dired-goto-file marked-file)
+       (dired-mark 1)
+       (goto-char (point-min))
+       (dired-gitignore--hide)
+       (should (equal (dired-get-marked-files) nil))))))
