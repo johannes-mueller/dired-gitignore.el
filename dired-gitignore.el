@@ -50,7 +50,7 @@
   (save-excursion
     (let ((marked-files (dired-get-marked-files)))
       (dired-gitignore--remove-all-marks)
-      (dolist (file (split-string (shell-command-to-string "git check-ignore * .*")))
+      (dolist (file (split-string (shell-command-to-string "git check-ignore `ls -A1`")))
 	(setq marked-files (delete (dired-gitignore--mark-file file) marked-files)))
       (dired-do-kill-lines nil "")
       (dired-gitignore--restore-marks marked-files))))
