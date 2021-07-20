@@ -3,10 +3,10 @@ name: Tests
 on:
   pull_request:
     paths-ignore:
-      - '**.md'
+      - '**.org'
   push:
     paths-ignore:
-      - '**.md'
+      - '**.org'
     branches:
       - master
 

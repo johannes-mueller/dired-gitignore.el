@@ -2,7 +2,6 @@
 (require 'dired-gitignore)
 
 (defun fixture-tmp-dir (body)
-  (message "git executable %s" (executable-find "git"))
   (let ((tmp-dir (make-temp-file "dired-gitignore-test-repo" 'directory)))
     (unwind-protect
        (progn
@@ -28,7 +27,11 @@
 (ert-deftest test-dired-gitignore--hide--hidden-items-not-present ()
   (fixture-tmp-dir
    (lambda ()
+     (message "%s" (buffer-string))
+     (message "ignoring %s" (shell-command-to-string "git check-ignore * .*"))
+     (message "pwd %s" (shell-command-to-string "pwd"))
      (dired-gitignore--hide)
+     (message "%s" (buffer-string))
      (should (not (string-match-p " to-be-ignored.txt" (buffer-string)))))))
 
 (ert-deftest test-dired-gitignore--hide--be-back-at-point-min ()
