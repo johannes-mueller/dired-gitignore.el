@@ -48,7 +48,7 @@
 (defun dired-gitignore--hide ()
   "Determine the lines to be hidden and hide them."
   (save-excursion
-    (let ((marked-files (dired-get-marked-files)))
+    (let ((marked-files (dired-gitignore--get-marked-files)))
       (dired-gitignore--remove-all-marks)
       (dolist (file (split-string (shell-command-to-string "git check-ignore `ls -A1`")))
 	(setq marked-files (delete (dired-gitignore--mark-file file) marked-files)))
@@ -77,6 +77,17 @@
   (dolist (file marked-files)
 	(dired-goto-file file)
 	(dired-mark 1)))
+
+
+(defun dired-gitignore--get-marked-files ()
+  (delete 'not-this-file
+	  (mapcar (lambda (file)
+		    (if (and (dired-file-name-at-point)
+			     (equal (expand-file-name (string-trim-left (dired-file-name-at-point))) file)
+			     (not (string-prefix-p "*" (thing-at-point 'line))))
+			'not-this-file
+		      file))
+		  (dired-get-marked-files))))
 
 (provide 'dired-gitignore)
 ;;; dired-gitignore.el ends here
