@@ -50,18 +50,36 @@
   (save-excursion
     (let ((marked-files (dired-gitignore--get-marked-files)))
       (dired-gitignore--remove-all-marks)
-      (dolist (file (split-string (shell-command-to-string "git check-ignore `ls -A1`")))
+      (dolist (file (dired-gitignore--files-to-be-ignored))
 	(setq marked-files (delete (dired-gitignore--mark-file file) marked-files)))
       (dired-do-kill-lines nil "")
       (dired-gitignore--restore-marks marked-files))))
 
 
+(defun dired-gitignore--get-marked-files ()
+  "Determine all the marked files, except the one only marked because under point."
+  (delete 'not-this-file
+	  (mapcar (lambda (file)
+		    (if (and (dired-file-name-at-point)
+			     (equal (expand-file-name (dired-file-name-at-point)) file)
+			     (not (string-prefix-p "*" (thing-at-point 'line))))
+			'not-this-file
+		      file))
+		  (dired-get-marked-files))))
+
+
 (defun dired-gitignore--remove-all-marks ()
+  "Remove all marks and return the marks removed."
   (save-excursion
     (let ((inhibit-read-only t))
       (goto-char (point-min))
       (while (re-search-forward dired-re-mark nil t)
 	(subst-char-in-region (1- (point)) (point) (preceding-char) ?\s)))))
+
+
+(defun dired-gitignore--files-to-be-ignored ()
+  "Determine and return a list of files to be ignored"
+  (split-string (shell-command-to-string "git check-ignore `ls -A1`")))
 
 
 (defun dired-gitignore--mark-file (file)
@@ -74,20 +92,11 @@
 
 
 (defun dired-gitignore--restore-marks (marked-files)
+  "Restore the marks of MARKED-FILES."
   (dolist (file marked-files)
 	(dired-goto-file file)
 	(dired-mark 1)))
 
-
-(defun dired-gitignore--get-marked-files ()
-  (delete 'not-this-file
-	  (mapcar (lambda (file)
-		    (if (and (dired-file-name-at-point)
-			     (equal (expand-file-name (dired-file-name-at-point)) file)
-			     (not (string-prefix-p "*" (thing-at-point 'line))))
-			'not-this-file
-		      file))
-		  (dired-get-marked-files))))
 
 (provide 'dired-gitignore)
 ;;; dired-gitignore.el ends here
