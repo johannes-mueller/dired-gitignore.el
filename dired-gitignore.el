@@ -83,7 +83,7 @@
   (delete 'not-this-file
 	  (mapcar (lambda (file)
 		    (if (and (dired-file-name-at-point)
-			     (equal (expand-file-name (string-trim-left (dired-file-name-at-point))) file)
+			     (equal (expand-file-name (dired-file-name-at-point)) file)
 			     (not (string-prefix-p "*" (thing-at-point 'line))))
 			'not-this-file
 		      file))
