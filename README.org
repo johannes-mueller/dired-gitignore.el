@@ -1,3 +1,5 @@
+[[https://github.com/johannes-mueller/dired-gitignore.el/actions/workflows/test.yml][https://github.com/johannes-mueller/dired-gitignore.el/actions/workflows/test.yml/badge.svg]]
+
 * dired-gitignore
 
 dired minor mode to ignore files that are to be ignored by git.
