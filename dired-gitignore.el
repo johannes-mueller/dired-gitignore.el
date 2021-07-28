@@ -48,33 +48,13 @@
 (defun dired-gitignore--hide ()
   "Determine the lines to be hidden and hide them."
   (save-excursion
-    (let ((marked-files (dired-gitignore--get-marked-files)))
+    (goto-char (point-min))
+    (let ((marked-files (dired-get-marked-files)))
       (dired-gitignore--remove-all-marks)
       (dolist (file (dired-gitignore--files-to-be-ignored))
 	(setq marked-files (delete (dired-gitignore--mark-file file) marked-files)))
       (dired-do-kill-lines nil "")
       (dired-gitignore--restore-marks marked-files))))
-
-
-(defun dired-gitignore--get-marked-files ()
-  "Determine all the marked files, except the one only marked because under point."
-  (delete 'not-this-file
-	  (mapcar (lambda (file)
-		    (if (and (dired-gitignore--file-is-file-at-point file)
-			     (not (string-prefix-p "*" (thing-at-point 'line))))
-			'not-this-file
-		      file))
-		  (dired-get-marked-files))))
-
-
-(defun dired-gitignore--file-is-file-at-point (file)
-  "Determine if the file at point is FILE."
-  (if (dired-file-name-at-point)
-      (let* ((file-at-point (expand-file-name (dired-file-name-at-point)))
-	     (file (if (string-match "/$" file-at-point)
-		       (file-name-as-directory file)
-		     file)))
-	(equal file-at-point file))))
 
 
 (defun dired-gitignore--remove-all-marks ()
