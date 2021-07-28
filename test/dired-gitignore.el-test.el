@@ -20,13 +20,13 @@
   (fixture-tmp-dir
    (lambda ()
      (should (eq (dired-get-marked-files) nil))
-     (should (eq (count-lines (point-min) (point-max)) 9)))))
+     (should (eq (count-lines (point-min) (point-max)) 10)))))
 
-(ert-deftest test-dired-gitignore--hide--7-entries-remaining ()
+(ert-deftest test-dired-gitignore--hide--8-entries-remaining ()
   (fixture-tmp-dir
    (lambda ()
      (dired-gitignore--hide)
-     (should (eq (count-lines (point-min) (point-max)) 7)))))
+     (should (eq (count-lines (point-min) (point-max)) 8)))))
 
 (ert-deftest test-dired-gitignore--hide--hidden-items-not-present ()
   (fixture-tmp-dir
@@ -54,10 +54,18 @@
        (dired-gitignore--hide)
        (should (equal (dired-file-name-at-point) (concat tmp-dir "/test-repo/not-to-be-ignored.txt")))))))
 
-(ert-deftest test-dired-gitignore--hide--not-marked-after-hide ()
+(ert-deftest test-dired-gitignore--hide--file-not-marked-after-hide ()
   (fixture-tmp-dir
    (lambda ()
      (let ((marked-file (concat (file-name-as-directory tmp-dir) "test-repo/not-to-be-ignored.txt")))
+       (dired-goto-file marked-file)
+       (dired-gitignore--hide)
+       (should (not (string-prefix-p "*" (thing-at-point 'line))))))))
+
+(ert-deftest test-dired-gitignore--hide--dir-not-marked-after-hide ()
+  (fixture-tmp-dir
+   (lambda ()
+     (let ((marked-file (concat (file-name-as-directory tmp-dir) "test-repo/visible-directory")))
        (dired-goto-file marked-file)
        (dired-gitignore--hide)
        (should (not (string-prefix-p "*" (thing-at-point 'line))))))))
