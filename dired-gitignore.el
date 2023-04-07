@@ -6,7 +6,7 @@
 ;; URL: https://github.com/johannes-mueller/dired-gitignore.el
 ;; Version: 0.1.0
 ;; Keywords: dired, convenience, git
-;; Package-Requires: ((emacs "27.1")
+;; Package-Requires: ((emacs "27.1"))
 
 ;; GNU Emacs is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
