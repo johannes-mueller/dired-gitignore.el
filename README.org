@@ -38,6 +38,12 @@ example by putting something like
 into your startup files.  Then you will hide and show the gitignored files in a
 dired buffer by hitting the =H= key.
 
+If you want to to hide ignored files by default you can do that using
+
+#+BEGIN_EXAMPLE emacs-lisp
+(eval-after-load 'dired #'dired-gitignore-mode)
+#+END_EXAMPLE
+
 
 ** Status
 
