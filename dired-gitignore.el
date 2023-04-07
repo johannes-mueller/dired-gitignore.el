@@ -27,13 +27,19 @@
 ;; command to toggle the minor mode `(dired-gitignore-moode)' to some
 ;; convenient key.
 
-;; It needs the executables for `git' and `ls' in the `PATH'==.
+;; In order to hide ignored files by default use `eval-after-load'
+;;
+;; (eval-after-load 'dired #'dired-gitignore-mode)
+
+;; It needs the executables for `git' and `ls' in the `PATH'.
+
+;;; Code:
 
 (require 'dired)
 
 ;;;###autoload
 (define-minor-mode dired-gitignore-mode
-  "Toggle `dired-gitignore-mode'"
+  "Toggle `dired-gitignore-mode'."
   :init-value nil
   :lighter " !."
   :group 'dired
