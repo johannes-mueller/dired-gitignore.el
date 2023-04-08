@@ -3,15 +3,15 @@
 
 (defun fixture-tmp-dir (body)
   (let ((tmp-dir (make-temp-file "dired-gitignore-test-repo" 'directory))
-	(home (getenv "HOME")))
+        (home (getenv "HOME")))
     (unwind-protect
-	(progn
-	  (shell-command-to-string (concat "tar -xf test/test-repo.tar --directory " tmp-dir))
-	  (dired (concat (file-name-as-directory tmp-dir) "test-repo"))
-	  (goto-char (point-min))
-	  (let ((abbreviated-home-dir (concat "\\`" tmp-dir "\\(/\\|\\'\\)" )))
-	    (setenv "HOME" tmp-dir)
-	    (funcall body)))
+        (progn
+          (shell-command-to-string (concat "tar -xf test/test-repo.tar --directory " tmp-dir))
+          (dired (concat (file-name-as-directory tmp-dir) "test-repo"))
+          (goto-char (point-min))
+          (let ((abbreviated-home-dir (concat "\\`" tmp-dir "\\(/\\|\\'\\)" )))
+            (setenv "HOME" tmp-dir)
+            (funcall body)))
       (kill-current-buffer)
       (delete-directory tmp-dir 'recursively)
       (setenv "HOME" home))))
@@ -85,7 +85,7 @@
    (lambda ()
      (dired-gitignore--mark-file ".cache")
      (should (equal (dired-get-marked-files)
-		    `(,(concat (file-name-as-directory tmp-dir) "test-repo/.cache")))))))
+                    `(,(concat (file-name-as-directory tmp-dir) "test-repo/.cache")))))))
 
 (ert-deftest test-dired-gitignore--mark-non-existant ()
   (fixture-tmp-dir
