@@ -49,7 +49,9 @@ If you want to to hide ignored files by default you can do that using
 
 This is basically the result of a rainy Sunday afternoon hack.  So probably not
 everything will work under any circumstances.  Bug reports and feedback welcome
-in the issue tracker.  Pull requests also, of course.
+in the issue tracker.  Pull requests also, of course.  In the meantime it turns
+out to be quite stable, as it does not seem to cause any trouble.
+
 
 ** Alternatives
 
