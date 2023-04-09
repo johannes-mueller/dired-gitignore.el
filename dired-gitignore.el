@@ -45,9 +45,9 @@
   :group 'dired
   (if dired-gitignore-mode
       (progn
-        (add-hook 'dired-after-readin-hook 'dired-gitignore--hide)
+        (add-hook 'dired-after-readin-hook #'dired-gitignore--hide)
         (dired-gitignore--hide))
-    (remove-hook 'dired-after-readin-hook 'dired-gitignore--hide)
+    (remove-hook 'dired-after-readin-hook #'dired-gitignore--hide)
     (revert-buffer)))
 
 
