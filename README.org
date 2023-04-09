@@ -1,4 +1,5 @@
 [[https://github.com/johannes-mueller/dired-gitignore.el/actions/workflows/test.yml][https://github.com/johannes-mueller/dired-gitignore.el/actions/workflows/test.yml/badge.svg]]
+[[https://melpa.org/#/dired-gitignore][https://melpa.org/packages/dired-gitignore-badge.svg]]
 
 * dired-gitignore
 
@@ -9,16 +10,19 @@ dired minor mode to ignore files that are to be ignored by git.
 Sometimes the working copy directories of your git repos get flooded with
 temporary files, log files, cache stuff – in short files not belonging to the
 repo and ignored by git.  At those times you might wish for a convenient way to
-hide those files in your =dired= buffer.  If yes, =dired-gitignore= is
-for you.
+hide those files in your =dired= buffer.  If yes, =dired-gitignore= is for you.
 
 Hide and show the gitignored files by a simple configurable keystroke.
 
 
 ** Installation
 
-As of now the easiest way of installing it is to use [[https://github.com/raxod502/straight.el][straight.el]]. Put the
-following lines into your startup file.
+Easiest way to install is from [[https://melpa.org][MELPA]].  If you have configured the MELPA sources
+you can just install the =dired-gitignore= package using the =package-install=
+command.
+
+You can of course also use [[https://github.com/raxod502/straight.el][straight.el]]. Put the following lines into your
+startup file.
 
 #+BEGIN_EXAMPLE emacs-lisp
 (straight-use-package
