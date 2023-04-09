@@ -24,7 +24,7 @@
 
 ;; When the minor mode is active, the ignored items are hidden.  When it is
 ;; deactivated, they are shown again.  The recommended use case is to bind the
-;; command to toggle the minor mode `(dired-gitignore-moode)' to some
+;; command to toggle the minor mode `(dired-gitignore-mode)' to some
 ;; convenient key.
 
 ;; In order to hide ignored files by default use `eval-after-load'
@@ -73,12 +73,12 @@
 
 
 (defun dired-gitignore--files-to-be-ignored ()
-  "Determine and return a list of files to be ignored"
+  "Determine and return a list of files to be ignored."
   (split-string (shell-command-to-string "git check-ignore `ls -A1`")))
 
 
 (defun dired-gitignore--mark-file (file)
-  "Mark the file FILE in the dired buffer."
+  "Mark the file FILE in the Dired buffer."
   (let ((absolute-file (concat (expand-file-name default-directory) file)))
     (when (file-exists-p absolute-file)
       (dired-goto-file absolute-file)

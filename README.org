@@ -54,7 +54,7 @@ in the issue tracker.  Pull requests also, of course.
 ** Alternatives
 
 There is a way more sophisticated package =dired-filter.el= of the
-[[https://github.com/Fuco1/dired-hacks][=dired-hacks=]] suite.  It can do things like this one and many more.  So if you
+[[https://github.com/Fuco1/dired-hacks][dired-hacks]] suite.  It can do things like this one and many more.  So if you
 have more complicated needs regarding filtering in =dired= this might be a
 better bet for you.  However, =dired-filter.el= is also more complex, it has
 more than 1200 lines of code plus some heavy dependencies as opposed to less
