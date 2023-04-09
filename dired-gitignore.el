@@ -1,6 +1,6 @@
 ;;; dired-gitignore.el --- A minor mode to hide gitignored files in a dired buffer -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2021 Johannes Mueller
+;; Copyright (C) 2021 - 2023 Johannes Mueller
 
 ;; Author: Johannes Mueller <github@johannes-mueller.org>
 ;; URL: https://github.com/johannes-mueller/dired-gitignore.el
