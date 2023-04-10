@@ -45,7 +45,7 @@ dired buffer by hitting the =H= key.
 If you want to to hide ignored files by default you can do that using
 
 #+BEGIN_EXAMPLE emacs-lisp
-(eval-after-load 'dired #'dired-gitignore-mode)
+(add-hook 'dired-mode-hook 'dired-gitignore-mode)
 #+END_EXAMPLE
 
 
