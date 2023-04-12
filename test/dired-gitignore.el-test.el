@@ -37,6 +37,7 @@
    (message "first line %s" (thing-at-point 'line t))
    (goto-char (point-max))
    (message "last line %s" (thing-at-point 'line t))
+   (message "complete buffer\n%s\n" (buffer-string))
    (should (eq (count-lines (point-min) (point-max)) 8))))
 
 (ert-deftest test-dired-gitignore--hide--hidden-items-not-present ()
