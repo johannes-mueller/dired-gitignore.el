@@ -33,6 +33,10 @@
 (ert-deftest test-dired-gitignore--hide--8-entries-remaining ()
   (fixture-tmp-dir
    (dired-gitignore-mode)
+   (goto-char (point-min))
+   (message "first line %s" (thing-at-point 'line t))
+   (goto-char (point-max))
+   (message "last line %s" (thing-at-point 'line t))
    (should (eq (count-lines (point-min) (point-max)) 8))))
 
 (ert-deftest test-dired-gitignore--hide--hidden-items-not-present ()
