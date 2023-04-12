@@ -41,7 +41,7 @@
 (define-minor-mode dired-gitignore-mode
   "Toggle `dired-gitignore-mode'."
   :init-value nil
-  :lighter " !."
+  :lighter " !g"
   :group 'dired
   (if dired-gitignore-mode
       (add-hook 'dired-after-readin-hook #'dired-gitignore--hide)
