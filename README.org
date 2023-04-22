@@ -57,6 +57,14 @@ in the issue tracker.  Pull requests also, of course.  In the meantime it turns
 out to be quite stable, as it does not seem to cause any trouble.
 
 
+** Limitations / Caveats
+
+A standard UNIX shell is required for =dired-gitignore.el= to work. The fish
+shell is only supported version 3.4.0 or higher.  If you experience issues with
+the standard shell you are using you might consider using the =shell-file-name=
+to change it.
+
+
 ** Alternatives
 
 There is a way more sophisticated package =dired-filter.el= of the

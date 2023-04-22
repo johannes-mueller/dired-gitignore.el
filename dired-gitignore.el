@@ -31,7 +31,8 @@
 ;;
 ;; (add-hook 'dired-mode-hook 'dired-gitignore-mode)
 
-;; It needs the executables for `git' and `ls' in the `PATH'.
+;; It needs the executables for `git' and `ls' in the `PATH' and a standard UNIX shell
+;; behind the `shell-file-name' variable.  The fish shell <3.4.0 does not work.
 
 ;;; Code:
 
