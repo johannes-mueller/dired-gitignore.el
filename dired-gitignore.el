@@ -72,6 +72,7 @@
 
 (defun dired-gitignore--files-to-be-ignored ()
   "Determine and return a list of files to be ignored."
+  (message "%s" (shell-command-to-string "git check-ignore $(ls -A1)"))
   (split-string (shell-command-to-string "git check-ignore $(ls -A1)")))
 
 

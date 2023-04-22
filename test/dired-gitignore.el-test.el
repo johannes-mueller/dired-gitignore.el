@@ -35,6 +35,12 @@
    (dired-gitignore-mode)
    (should (eq (count-lines (point-min) (point-max)) 8))))
 
+(ert-deftest test-dired-gitignore--hide--fish ()
+  (fixture-tmp-dir
+   (let ((shell-file-name "/usr/bin/fish"))
+     (dired-gitignore-mode)
+     (should (eq (count-lines (point-min) (point-max)) 8)))))
+
 (ert-deftest test-dired-gitignore--hide--hidden-items-not-present ()
   (fixture-tmp-dir
    (dired-gitignore-mode)
