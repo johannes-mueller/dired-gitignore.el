@@ -18,7 +18,7 @@ jobs:
       matrix:
         emacs_version:
           - 'snapshot'
-          - '29.0.60'
+          - 'release-snapshot'
     steps:
       - uses: actions/checkout@v2
       - uses: purcell/setup-emacs@master
