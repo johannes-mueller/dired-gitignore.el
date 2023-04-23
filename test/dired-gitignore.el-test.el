@@ -39,6 +39,7 @@
    (message "last line %s" (thing-at-point 'line t))
    (message "complete buffer\n%s\n" (buffer-string))
    (message "dired-listing-switches: %s" dired-listing-switches)
+   (nessage "ls-lisp-use-insert-directory-program: %s" ls-lisp-use-insert-directory-program)
    (should (eq (count-lines (point-min) (point-max)) 8))))
 
 (ert-deftest test-dired-gitignore--hide--hidden-items-not-present ()
