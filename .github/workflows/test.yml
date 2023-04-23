@@ -32,6 +32,7 @@ jobs:
       - name: Install dependencies
         run: |
             ls --version
+            ls -l
             $HOME/.cask/bin/cask install
 
       - name: Run tests
