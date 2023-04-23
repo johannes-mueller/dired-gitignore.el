@@ -38,6 +38,7 @@
    (goto-char (point-max))
    (message "last line %s" (thing-at-point 'line t))
    (message "complete buffer\n%s\n" (buffer-string))
+   (message "dired-listing-switches: %s" dired-listing-switches)
    (should (eq (count-lines (point-min) (point-max)) 8))))
 
 (ert-deftest test-dired-gitignore--hide--hidden-items-not-present ()
