@@ -31,7 +31,8 @@
 ;;
 ;; (add-hook 'dired-mode-hook 'dired-gitignore-mode)
 
-;; It needs the executables for `git' and `ls' in the `PATH'.
+;; It needs the executables for `git' and `ls' in the `PATH' and a standard UNIX shell
+;; behind the `shell-file-name' variable.  The fish shell <3.4.0 does not work.
 
 ;;; Code:
 
@@ -72,7 +73,8 @@
 
 (defun dired-gitignore--files-to-be-ignored ()
   "Determine and return a list of files to be ignored."
-  (split-string (shell-command-to-string "git check-ignore `ls -A1`")))
+  (message "%s" (shell-command-to-string "git check-ignore $(ls -A1)"))
+  (split-string (shell-command-to-string "git check-ignore $(ls -A1)")))
 
 
 (defun dired-gitignore--mark-file (file)
