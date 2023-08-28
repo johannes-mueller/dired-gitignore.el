@@ -1,10 +1,11 @@
 
 (require 'dired-gitignore)
+(require 'ls-lisp)
 
 (defmacro fixture-tmp-dir (&rest body)
   `(let ((tmp-dir (make-temp-file "dired-gitignore-test-repo" 'directory))
          (home (getenv "HOME"))
-         (dired-use-ls-dired nil))
+         (ls-lisp-use-insert-directory-program t))
      (unwind-protect
          (progn
            (shell-command-to-string (concat "tar -xf test/test-repo.tar --directory " tmp-dir))
@@ -40,7 +41,7 @@
    (message "last line %s" (thing-at-point 'line t))
    (message "complete buffer\n%s\n" (buffer-string))
    (message "dired-listing-switches: %s" dired-listing-switches)
-   (require 'ls-lisp)
+   (message "dired-use-ls-dired %s" dired-use-ls-dired)
    (message "ls-lisp-use-insert-directory-program: %s" ls-lisp-use-insert-directory-program)
    (should (eq (count-lines (point-min) (point-max)) 8))))
 
