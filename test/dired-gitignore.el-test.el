@@ -1,6 +1,5 @@
 
 (require 'dired-gitignore)
-(require 'ls-lisp)
 
 (defmacro fixture-tmp-dir (&rest body)
   `(let ((tmp-dir (make-temp-file "dired-gitignore-test-repo" 'directory))
@@ -36,8 +35,6 @@
 (ert-deftest test-dired-gitignore--hide--8-entries-remaining ()
   (fixture-tmp-dir
    (dired-gitignore-mode)
-   (goto-char (point-min))
-   (goto-char (point-max))
    (should (eq (count-lines (point-min) (point-max)) 8))))
 
 (ert-deftest test-dired-gitignore--hide--fish ()

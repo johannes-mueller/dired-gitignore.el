@@ -42,10 +42,7 @@ jobs:
           version: 'snapshot'
 
       - name: Install dependencies
-        run: |
-            ls --version
-            ls -l
-            $HOME/.cask/bin/cask install
+        run: '$HOME/.cask/bin/cask install'
 
       - name: Run tests
         if: matrix.allow_failure != true
