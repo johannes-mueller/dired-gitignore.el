@@ -18,6 +18,7 @@ jobs:
       matrix:
         emacs_version:
           - '28.2'
+          - '29.1'
           - 'snapshot'
           - 'release-snapshot'
     steps:
@@ -26,7 +27,7 @@ jobs:
         with:
           version: ${{ matrix.emacs_version }}
       - uses: fish-actions/install-fish@master
-      
+
       - uses: conao3/setup-cask@master
         with:
           version: 'snapshot'
