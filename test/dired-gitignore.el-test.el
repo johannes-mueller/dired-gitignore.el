@@ -3,7 +3,8 @@
 
 (defmacro fixture-tmp-dir (&rest body)
   `(let ((tmp-dir (make-temp-file "dired-gitignore-test-repo" 'directory))
-         (home (getenv "HOME")))
+         (home (getenv "HOME"))
+         (dired-free-space 'separate))
      (unwind-protect
          (progn
            (shell-command-to-string (concat "tar -xf test/test-repo.tar --directory " tmp-dir))
@@ -11,6 +12,7 @@
            (goto-char (point-min))
            (let ((abbreviated-home-dir (concat "\\`" tmp-dir "\\(/\\|\\'\\)" )))
              (setenv "HOME" tmp-dir)
+             (setenv "LANG" "C")
              ,@body))
        (kill-current-buffer)
        (delete-directory tmp-dir 'recursively)
