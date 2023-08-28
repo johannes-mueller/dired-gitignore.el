@@ -5,7 +5,8 @@
 (defmacro fixture-tmp-dir (&rest body)
   `(let ((tmp-dir (make-temp-file "dired-gitignore-test-repo" 'directory))
          (home (getenv "HOME"))
-         (ls-lisp-use-insert-directory-program nil))
+         (ls-lisp-use-insert-directory-program t)
+         (dired-free-space 'first))
      (unwind-protect
          (progn
            (shell-command-to-string (concat "tar -xf test/test-repo.tar --directory " tmp-dir))
@@ -42,6 +43,7 @@
    (message "complete buffer\n%s\n" (buffer-string))
    (message "dired-listing-switches: %s" dired-listing-switches)
    (message "dired-use-ls-dired %s" dired-use-ls-dired)
+   (message "dired-free-space %s" dired-free-space)
    (message "ls-lisp-use-insert-directory-program: %s" ls-lisp-use-insert-directory-program)
    (should (eq (count-lines (point-min) (point-max)) 8))))
 
