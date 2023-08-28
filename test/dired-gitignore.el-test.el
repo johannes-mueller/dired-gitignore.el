@@ -3,7 +3,8 @@
 
 (defmacro fixture-tmp-dir (&rest body)
   `(let ((tmp-dir (make-temp-file "dired-gitignore-test-repo" 'directory))
-         (home (getenv "HOME")))
+         (home (getenv "HOME"))
+         (dired-use-ls-dired nil))
      (unwind-protect
          (progn
            (shell-command-to-string (concat "tar -xf test/test-repo.tar --directory " tmp-dir))
@@ -34,7 +35,7 @@
   (fixture-tmp-dir
    (dired-gitignore-mode)
    (goto-char (point-min))
-   (message "first line %s" (thing-at-point 'line t))
+   (message "first line %s %s" (thing-at-point 'line t) emacs-version)
    (goto-char (point-max))
    (message "last line %s" (thing-at-point 'line t))
    (message "complete buffer\n%s\n" (buffer-string))
