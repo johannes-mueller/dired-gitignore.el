@@ -5,7 +5,7 @@
 (defmacro fixture-tmp-dir (&rest body)
   `(let ((tmp-dir (make-temp-file "dired-gitignore-test-repo" 'directory))
          (home (getenv "HOME"))
-         (ls-lisp-use-insert-directory-program t))
+         (ls-lisp-use-insert-directory-program nil))
      (unwind-protect
          (progn
            (shell-command-to-string (concat "tar -xf test/test-repo.tar --directory " tmp-dir))
