@@ -4,9 +4,7 @@
 
 (defmacro fixture-tmp-dir (&rest body)
   `(let ((tmp-dir (make-temp-file "dired-gitignore-test-repo" 'directory))
-         (home (getenv "HOME"))
-         (ls-lisp-use-insert-directory-program nil)
-         (dired-free-space 'first))
+         (home (getenv "HOME")))
      (unwind-protect
          (progn
            (shell-command-to-string (concat "tar -xf test/test-repo.tar --directory " tmp-dir))
@@ -24,16 +22,16 @@
 (ert-deftest test-dired-gitignore--add-hook ()
   (add-hook 'dired-mode-hook 'dired-gitignore-mode)
   (fixture-tmp-dir
-   (should (eq (count-lines (point-min) (point-max)) 8))
+   (should (eq (count-lines (point-min) (point-max)) 7))
    (dired-gitignore-mode -1)
-   (should (eq (count-lines (point-min) (point-max)) 10))))
+   (should (eq (count-lines (point-min) (point-max)) 9))))
 
 (ert-deftest test-dired-gitignore--mark-nothing ()
   (fixture-tmp-dir
    (should (eq (dired-get-marked-files) nil))
-   (should (eq (count-lines (point-min) (point-max)) 10))))
+   (should (eq (count-lines (point-min) (point-max)) 9))))
 
-(ert-deftest test-dired-gitignore--hide--8-entries-remaining ()
+(ert-deftest test-dired-gitignore--hide--7-entries-remaining ()
   (fixture-tmp-dir
    (dired-gitignore-mode)
    (goto-char (point-min))
@@ -45,13 +43,13 @@
    (message "dired-use-ls-dired %s" dired-use-ls-dired)
    (message "dired-free-space %s" dired-free-space)
    (message "ls-lisp-use-insert-directory-program: %s" ls-lisp-use-insert-directory-program)
-   (should (eq (count-lines (point-min) (point-max)) 8))))
+   (should (eq (count-lines (point-min) (point-max)) 7))))
 
 (ert-deftest test-dired-gitignore--hide--fish ()
   (fixture-tmp-dir
    (let ((shell-file-name "/usr/bin/fish"))
      (dired-gitignore-mode)
-     (should (eq (count-lines (point-min) (point-max)) 8)))))
+     (should (eq (count-lines (point-min) (point-max)) 7)))))
 
 (ert-deftest test-dired-gitignore--hide--hidden-items-not-present ()
   (fixture-tmp-dir
