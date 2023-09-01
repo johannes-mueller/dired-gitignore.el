@@ -41,6 +41,13 @@ jobs:
         with:
           version: 'snapshot'
 
+      - name: Install fd
+        run: |
+          sudo apt-get install fd-find
+          sudo ln -sf /usr/bin/fdfind /usr/bin/fd
+          ls -l /usr/bin/fd*
+
+
       - name: Install dependencies
         run: '$HOME/.cask/bin/cask install'
 
