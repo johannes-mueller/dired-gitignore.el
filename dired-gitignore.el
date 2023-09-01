@@ -56,10 +56,18 @@
     (goto-char (point-min))
     (let ((marked-files (dired-get-marked-files)))
       (dired-gitignore--remove-all-marks)
-      (dolist (file (dired-gitignore--files-to-be-ignored))
-        (setq marked-files (delete (dired-gitignore--mark-file file) marked-files)))
+      (dolist (file (dired-gitignore--files-to-be-shown))
+        (dired-gitignore--mark-file file))
+      (dired-toggle-marks)
+      (dolist (file (dired-get-marked-files))
+        (setq marked-files (delete file marked-files)))
       (dired-do-kill-lines nil "")
       (dired-gitignore--restore-marks marked-files))))
+
+
+(defun dired-gitignore--files-to-be-shown ()
+  "Determine all the files that need to be shown."
+  (split-string (shell-command-to-string "fd -H")))
 
 
 (defun dired-gitignore--remove-all-marks ()
@@ -80,8 +88,8 @@
   "Mark the file FILE in the Dired buffer."
   (let ((absolute-file (concat (expand-file-name default-directory) file)))
     (when (file-exists-p absolute-file)
-      (dired-goto-file absolute-file)
-      (dired-mark 1)
+      (when (dired-goto-file absolute-file)
+        (dired-mark 1))
       absolute-file)))
 
 
