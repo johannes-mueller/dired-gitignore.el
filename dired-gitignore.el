@@ -37,6 +37,7 @@
 ;;; Code:
 
 (require 'dired)
+(require 'seq)
 
 ;;;###autoload
 (define-minor-mode dired-gitignore-mode
@@ -67,7 +68,9 @@
 
 (defun dired-gitignore--files-to-be-shown ()
   "Determine all the files that need to be shown."
-  (split-string (shell-command-to-string "fd --hidden --strip-cwd-prefix")))
+  (seq-filter (lambda (path) (or (not (string-prefix-p ".git/" path))
+                                 (string-equal path ".git/")))
+              (split-string (shell-command-to-string "fd --hidden --strip-cwd-prefix"))))
 
 
 (defun dired-gitignore--remove-all-marks ()
