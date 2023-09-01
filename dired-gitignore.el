@@ -67,7 +67,7 @@
 
 (defun dired-gitignore--files-to-be-shown ()
   "Determine all the files that need to be shown."
-  (split-string (shell-command-to-string "fd -H")))
+  (split-string (shell-command-to-string "fd --hidden --strip-cwd-prefix")))
 
 
 (defun dired-gitignore--remove-all-marks ()
