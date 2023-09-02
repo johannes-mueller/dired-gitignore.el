@@ -73,16 +73,17 @@
 
 (defun dired-gitignore--files-to-be-ignored ()
   "Determine and return a list of files to be ignored."
-  (split-string (shell-command-to-string "git check-ignore $(ls -A1)")))
+  (split-string
+   (shell-command-to-string "git ls-files -oi --exclude-standard --directory")))
 
 
 (defun dired-gitignore--mark-file (file)
   "Mark the file FILE in the Dired buffer."
   (let ((absolute-file (concat (expand-file-name default-directory) file)))
-    (when (file-exists-p absolute-file)
-      (dired-goto-file absolute-file)
-      (dired-mark 1)
-      absolute-file)))
+    (when (and (file-exists-p absolute-file)
+               (dired-goto-file absolute-file))
+      (dired-mark 1))
+      absolute-file))
 
 
 (defun dired-gitignore--restore-marks (marked-files)
