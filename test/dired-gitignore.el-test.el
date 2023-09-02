@@ -109,7 +109,6 @@
      (dired-gitignore-mode)
      (should (equal (dired-get-marked-files) `(,marked-file))))))
 
-
 (ert-deftest test-dired-gitignore--restore-marks-ignored-file-marked ()
   (fixture-tmp-dir
    (let ((marked-file (concat (file-name-as-directory tmp-dir) "test-repo/to-be-ignored.txt")))
@@ -118,3 +117,19 @@
      (goto-char (point-min))
      (dired-gitignore-mode)
      (should (equal (dired-get-marked-files) nil)))))
+
+(ert-deftest test-dired-gitignore--dired-subdir ()
+  (fixture-tmp-dir
+   (dired-insert-subdir (concat (file-name-as-directory tmp-dir) "test-repo/visible-directory"))
+   (should (eq (count-lines (point-min) (point-max)) 17))
+   (dired-gitignore-mode)
+   (should (eq (count-lines (point-min) (point-max)) 14))))
+
+(ert-deftest test-dired-gitignore--dired-subdir-marked-file-in-subdir ()
+  (fixture-tmp-dir
+   (let ((marked-file (concat (file-name-as-directory tmp-dir) "test-repo/visible-directory/some-file.txt")))
+     (dired-insert-subdir (concat (file-name-as-directory tmp-dir) "test-repo/visible-directory"))
+     (dired-goto-file marked-file)
+     (dired-mark 1)
+     (dired-gitignore-mode)
+     (should (equal (dired-get-marked-files) `(,marked-file))))))
