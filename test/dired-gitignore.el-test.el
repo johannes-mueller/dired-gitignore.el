@@ -23,25 +23,25 @@
 (ert-deftest test-dired-gitignore--add-hook ()
   (add-hook 'dired-mode-hook 'dired-gitignore-mode)
   (fixture-tmp-dir
-   (should (eq (count-lines (point-min) (point-max)) 8))
+   (should (eq (count-lines (point-min) (point-max)) 9))
    (dired-gitignore-mode -1)
-   (should (eq (count-lines (point-min) (point-max)) 10))))
+   (should (eq (count-lines (point-min) (point-max)) 11))))
 
 (ert-deftest test-dired-gitignore--mark-nothing ()
   (fixture-tmp-dir
    (should (eq (dired-get-marked-files) nil))
-   (should (eq (count-lines (point-min) (point-max)) 10))))
+   (should (eq (count-lines (point-min) (point-max)) 11))))
 
-(ert-deftest test-dired-gitignore--hide--8-entries-remaining ()
+(ert-deftest test-dired-gitignore--hide--9-entries-remaining ()
   (fixture-tmp-dir
    (dired-gitignore-mode)
-   (should (eq (count-lines (point-min) (point-max)) 8))))
+   (should (eq (count-lines (point-min) (point-max)) 9))))
 
 (ert-deftest test-dired-gitignore--hide--fish ()
   (fixture-tmp-dir
    (let ((shell-file-name "/usr/bin/fish"))
      (dired-gitignore-mode)
-     (should (eq (count-lines (point-min) (point-max)) 8)))))
+     (should (eq (count-lines (point-min) (point-max)) 9)))))
 
 (ert-deftest test-dired-gitignore--hide--hidden-items-not-present ()
   (fixture-tmp-dir
@@ -121,9 +121,9 @@
 (ert-deftest test-dired-gitignore--dired-subdir ()
   (fixture-tmp-dir
    (dired-insert-subdir (concat (file-name-as-directory tmp-dir) "test-repo/visible-directory"))
-   (should (eq (count-lines (point-min) (point-max)) 17))
+   (should (eq (count-lines (point-min) (point-max)) 18))
    (dired-gitignore-mode)
-   (should (eq (count-lines (point-min) (point-max)) 14))))
+   (should (eq (count-lines (point-min) (point-max)) 15))))
 
 (ert-deftest test-dired-gitignore--dired-subdir-marked-file-in-subdir ()
   (fixture-tmp-dir
