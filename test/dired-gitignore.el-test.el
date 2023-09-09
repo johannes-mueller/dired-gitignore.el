@@ -25,25 +25,25 @@
 (ert-deftest test-dired-gitignore--add-hook ()
   (add-hook 'dired-mode-hook 'dired-gitignore-mode)
   (fixture-tmp-dir
-   (should (eq (count-lines (point-min) (point-max)) 9))
+   (should (eq (count-lines (point-min) (point-max)) 10))
    (dired-gitignore-mode -1)
-   (should (eq (count-lines (point-min) (point-max)) 11))))
+   (should (eq (count-lines (point-min) (point-max)) 13))))
 
 (ert-deftest test-dired-gitignore--mark-nothing ()
   (fixture-tmp-dir
    (should (eq (dired-get-marked-files) nil))
-   (should (eq (count-lines (point-min) (point-max)) 11))))
+   (should (eq (count-lines (point-min) (point-max)) 13))))
 
-(ert-deftest test-dired-gitignore--hide--9-entries-remaining ()
+(ert-deftest test-dired-gitignore--hide--10-entries-remaining ()
   (fixture-tmp-dir
    (dired-gitignore-mode)
-   (should (eq (count-lines (point-min) (point-max)) 9))))
+   (should (eq (count-lines (point-min) (point-max)) 10))))
 
 (ert-deftest test-dired-gitignore--hide--fish ()
   (fixture-tmp-dir
    (let ((shell-file-name "/usr/bin/fish"))
      (dired-gitignore-mode)
-     (should (eq (count-lines (point-min) (point-max)) 9)))))
+     (should (eq (count-lines (point-min) (point-max)) 10)))))
 
 (ert-deftest test-dired-gitignore--hide--hidden-items-not-present ()
   (fixture-tmp-dir
@@ -123,9 +123,9 @@
 (ert-deftest test-dired-gitignore--dired-subdir ()
   (fixture-tmp-dir
    (dired-insert-subdir (concat (file-name-as-directory tmp-dir) "test-repo/visible-directory"))
-   (should (eq (count-lines (point-min) (point-max)) 18))
+   (should (eq (count-lines (point-min) (point-max)) 20))
    (dired-gitignore-mode)
-   (should (eq (count-lines (point-min) (point-max)) 15))))
+   (should (eq (count-lines (point-min) (point-max)) 16))))
 
 (ert-deftest test-dired-gitignore--dired-subdir-marked-file-in-subdir ()
   (fixture-tmp-dir
@@ -139,7 +139,7 @@
 (ert-deftest test-dired-gitignore--dired-gitignore-global-mode-t ()
   (let ((dired-gitignore--global-mode-active t))
     (fixture-tmp-dir
-     (should (eq (count-lines (point-min) (point-max)) 9)))))
+     (should (eq (count-lines (point-min) (point-max)) 10)))))
 
 (ert-deftest test-dired-gitignore--global-mode-enable ()
   (let ((dired-gitignore--global-mode-active))
@@ -162,6 +162,6 @@
   (let ((dired-gitignore--global-mode-active))
     (fixture-tmp-dir
      (dired-gitignore-global-mode)
-     (should (eq (count-lines (point-min) (point-max)) 9))
+     (should (eq (count-lines (point-min) (point-max)) 10))
      (dired-gitignore-global-mode)
-     (should (eq (count-lines (point-min) (point-max)) 11)))))
+     (should (eq (count-lines (point-min) (point-max)) 13)))))
