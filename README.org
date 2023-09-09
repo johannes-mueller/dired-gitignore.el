@@ -48,20 +48,21 @@ If you want to ignore gitignored files by default add also
 (dired-gitignore-global-mode t)
 #+END_EXAMPLE
 
+
 ** Status
 
-This is basically the result of a rainy Sunday afternoon hack.  So probably not
-everything will work under any circumstances.  Bug reports and feedback welcome
-in the issue tracker.  Pull requests also, of course.  In the meantime it turns
-out to be quite stable, as it does not seem to cause any trouble.
+It started off as a rainy Sunday afternoon hack.  Although it matured in some
+way over more than two years, probably not everything will work under any
+circumstances.  Bug reports and feedback welcome in the issue tracker.  Pull
+requests also, of course.  In the meantime it turns out to be quite stable, as
+it does not seem to cause any trouble.
 
 
 ** Limitations / Caveats
 
-A standard UNIX shell is required for =dired-gitignore.el= to work. The fish
-shell is only supported version 3.4.0 or higher.  If you experience issues with
-the standard shell you are using you might consider using the =shell-file-name=
-to change it.
+A standard UNIX shell is required for =dired-gitignore.el= to work.  If you
+experience issues with the standard shell you are using you might consider
+setting the =shell-file-name= variable to =/bin/bash= or so to change it.
 
 
 ** Alternatives

@@ -1,0 +1,12 @@
+This file documents the changes of =dired-gitignore.el=
+
+* From 0.1.2 to 0.2.0
+
+** Features
+
+- Support for dired-subdir
+- Introduce =dired-gitignore-global-mode=
+
+** Bugfixes
+
+- Support spaces in file names

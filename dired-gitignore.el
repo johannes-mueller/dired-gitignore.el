@@ -37,7 +37,9 @@
 ;; That affects only the current `dired' buffer.
 
 ;; It needs the executables for `git' and `ls' in the `PATH' and a standard UNIX shell
-;; behind the `shell-file-name' variable.  The fish shell <3.4.0 does not work.
+;; behind the `shell-file-name' variable.
+
+;; Changelog in: CHANGES.org in https://github.com/johannes-mueller/dired-gitignore.el/
 
 ;;; Code:
 
