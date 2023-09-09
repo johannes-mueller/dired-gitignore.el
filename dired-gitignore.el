@@ -93,7 +93,8 @@ YN is -1 it is disabled, if it is non-nil it is enabled."
 (defun dired-gitignore--files-to-be-ignored ()
   "Determine and return a list of files to be ignored."
   (split-string
-   (shell-command-to-string "git ls-files -oi --exclude-standard --directory")))
+   (shell-command-to-string "git ls-files -zoi --exclude-standard --directory")
+   "\0" t))
 
 (defun dired-gitignore--mark-file (file)
   "Mark the file FILE in the Dired buffer."
