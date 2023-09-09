@@ -78,7 +78,6 @@ YN is -1 it is disabled, if it is non-nil it is enabled."
     (let ((marked-files (dired-get-marked-files)))
       (dired-gitignore--remove-all-marks)
       (dolist (file (dired-gitignore--files-to-be-ignored))
-        (message "file: %s" file)
         (setq marked-files (delete (dired-gitignore--mark-file file) marked-files)))
       (dired-do-kill-lines nil "")
       (dired-gitignore--restore-marks marked-files))))
