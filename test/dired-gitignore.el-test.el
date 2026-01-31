@@ -66,7 +66,9 @@
    (let ((marked-file (concat (file-name-as-directory tmp-dir) "test-repo/not-to-be-ignored.txt")))
      (dired-goto-file marked-file)
      (dired-gitignore-mode)
-     (should (equal (dired-file-name-at-point) (concat tmp-dir "/test-repo/not-to-be-ignored.txt"))))))
+     (setenv "HOME" tmp-dir)
+     (should (equal (expand-file-name (dired-file-name-at-point))
+                    (expand-file-name marked-file))))))
 
 (ert-deftest test-dired-gitignore-mode--file-not-marked-after-hide ()
   (fixture-tmp-dir
