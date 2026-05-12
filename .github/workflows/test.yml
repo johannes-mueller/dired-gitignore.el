@@ -40,7 +40,7 @@ jobs:
           version: ${{ matrix.emacs_version }}
       - uses: fish-actions/install-fish@master
 
-      - uses: conao3/setup-cask@master
+      - uses: cask/setup-cask@master
         with:
           version: 'snapshot'
 
