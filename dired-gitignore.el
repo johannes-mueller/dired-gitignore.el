@@ -113,6 +113,7 @@ YN is -1 it is disabled, if it is non-nil it is enabled."
         (dired-mark 1)))
 
 (defun dired-gitignore--turn-on-if-globally-activated ()
+  "Turn mode on if globally activated."
   (when dired-gitignore--global-mode-active
     (dired-gitignore-mode)))
 
