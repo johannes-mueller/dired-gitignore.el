@@ -6,7 +6,7 @@
 ;; URL: https://github.com/johannes-mueller/dired-gitignore.el
 ;; Version: 0.1.0
 ;; Keywords: dired, convenience, git
-;; Package-Requires: ((emacs "27.1"))
+;; Package-Requires: ((emacs "26.1"))
 
 ;; GNU Emacs is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -113,6 +113,7 @@ YN is -1 it is disabled, if it is non-nil it is enabled."
         (dired-mark 1)))
 
 (defun dired-gitignore--turn-on-if-globally-activated ()
+  "Turn mode on if globally activated."
   (when dired-gitignore--global-mode-active
     (dired-gitignore-mode)))
 

@@ -1,3 +1,4 @@
+; -*- mode: emacs-lisp; lexical-binding: t -*-
 
 (require 'dired-gitignore)
 
